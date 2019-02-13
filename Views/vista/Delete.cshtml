@@ -1,0 +1,82 @@
+﻿@model gestionaMelon.vista
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+@*<h2>Delete</h2>*@
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title" id="myModalLabel">¿Seguro que quiere eliminarlo?</h4>
+</div> 
+
+@*<h3>Are you sure you want to delete this?</h3>*@
+<div class="container">
+    @*<h4>vista</h4>
+    <hr />*@
+    
+
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.alumno1.netbook.ndeserie)</dt>
+
+        <dd> @Html.DisplayFor(model => model.alumno1.netbook.ndeserie)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.alumno1.nombre)</dt>
+
+        <dd>@Html.DisplayFor(model => model.alumno1.nombre)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.alumno1.apellido)</dt>
+
+        <dd>@Html.DisplayFor(model => model.alumno1.apellido)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.alumno1.dni)</dt>
+
+        <dd>@Html.DisplayFor(model => model.alumno1.dni)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.comentarios)</dt>
+
+        <dd>@Html.DisplayFor(model => model.comentarios)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.fechaIngreso)</dt>
+
+        <dd>@Html.DisplayFor(model => model.fechaIngreso)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.flagRetirada)</dt>
+
+        <dd>
+            @if (Model.flagRetirada.GetValueOrDefault())
+            {<text>Si</text>}
+            else
+            {<text>No</text>}
+        </dd>
+
+        <dt>@Html.DisplayNameFor(model => model.fechaRetirada)</dt>
+
+        <dd>@Html.DisplayFor(model => model.fechaRetirada)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.estado.descripcion)</dt>
+
+        <dd>@Html.DisplayFor(model => model.estado.descripcion)</dd>
+
+    </dl>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        
+        
+        
+            <div class="form-actions no-color">
+              
+                <div class="col-md-4 col-md-offset-1">
+                    <input type="submit" value="Eliminar" class="btn btn-primary btn-block" />
+                    @*@Html.ActionLink("Back to List", "Index")*@
+                </div>
+            </div>
+  
+    }
+
+</div>
+<hr />

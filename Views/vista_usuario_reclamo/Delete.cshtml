@@ -1,0 +1,45 @@
+﻿@model gestionaMelon.vista_usuario_reclamo
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>¿Estas seguro que quieres eliminarlo?</h3>
+<div>
+    <h4>RECLAMO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.AspNetUsers.UserName)</dt>
+        <dd>@Html.DisplayFor(model => model.AspNetUsers.UserName)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.reclamo.descripcion)</dt>
+        <dd>@Html.DisplayFor(model => model.reclamo.descripcion)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.vista.alumno1.dni)</dt>
+        <dd>@Html.DisplayFor(model => model.vista.alumno1.dni)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.vista.alumno1.nombre)</dt>
+        <dd>@Html.DisplayFor(model => model.vista.alumno1.nombre)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.vista.alumno1.apellido)</dt>
+        <dd>@Html.DisplayFor(model => model.vista.alumno1.apellido)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.vista.alumno1.netbook.ndeserie)</dt>
+        <dd>@Html.DisplayFor(model => model.vista.alumno1.netbook.ndeserie)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.fecha)</dt>
+        <dd>@Html.DisplayFor(model => model.fecha)</dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

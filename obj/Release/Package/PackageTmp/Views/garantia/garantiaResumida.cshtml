@@ -1,0 +1,33 @@
+﻿@model IEnumerable<gestionaMelon.garantia>
+
+<h2>Rota en garantía</h2>
+
+<table class="table">
+    <tr>
+        <th> @Html.DisplayNameFor(model => model.fechaIngreso)  </th>
+        <th> @Html.DisplayNameFor(model => model.vista.alumno)</th>
+        <th> @Html.DisplayNameFor(model => model.ticket) </th>
+        <th> @Html.DisplayNameFor(model => model.fechaRetirada) </th>
+        <th> @Html.DisplayNameFor(model => model.fechaVuelta)  </th>
+        <th >@Html.DisplayNameFor(model => model.estadoGarantia1.descripcion)</th>
+        <th> @Html.DisplayNameFor(model => model.vista.ndeserie)</th>
+        <th> @Html.DisplayNameFor(model => model.problema1.descripcion) </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+             <td>  @Html.DisplayFor(modelItem => item.fechaIngreso) </td>
+            <td>Html.DisplayFor(modelItem => item.vista.alumno)</td>
+            <td>  @Html.DisplayFor(modelItem => item.ticket)</td>
+            <td>@Html.DisplayFor(modelItem => item.fechaRetirada)</td>
+            <td> @Html.DisplayFor(modelItem => item.fechaVuelta)</td>
+            <td>@Html.DisplayFor(modelItem => item.estadoGarantia1.descripcion) </td>
+            <td> @Html.DisplayFor(modelItem => item.vista.ndeserie) </td>
+            <td> @Html.DisplayFor(modelItem => item.problema1.descripcion)</td>
+
+            <td>  @Html.ActionLink("Details", "Details", new { id = item.idGarantia }) </td>
+        </tr>
+    }
+</table>
+

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<gestionaMelon.reclamoPorUsuario>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>Mis reclamos</h3>
+<p>Aqui verá todos los ingresos a reparación donde dejó un comentario o reclamo</p>
+<table class="table">
+    <tr class="alert alert-success">
+        @*<th>@Html.DisplayNameFor(model => model.id_vista)</th>*@
+        @*<th>@Html.DisplayNameFor(model => model.alumno)</th>
+        <th>@Html.DisplayNameFor(model => model.estado)</th>
+        <th>@Html.DisplayNameFor(model => model.fecha)</th>
+        <th>@Html.DisplayNameFor(model => model.count)</th>*@
+        <th>Alumno</th>
+        <th>Estado de la PC</th>
+        <th>Fecha de ingreso</th>
+        <th>Cantidad de comentarios</th>
+  
+        
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            
+            @*<td>@Html.DisplayFor(modelItem => item.id_vista)</td>*@
+            <td>@Html.DisplayFor(modelItem => item.alumno)</td>
+            <td>@Html.DisplayFor(modelItem => item.estado)</td>
+            <td>@Html.DisplayFor(modelItem => item.fecha)</td>
+            <td><strong>@Html.DisplayFor(modelItem => item.count)</strong></td>
+
+        
+            <td>
+                @Html.ActionLink("Ver reclamos", "Index", new { id = item.id_vista })
+            </td>
+        </tr>
+    }
+
+</table>

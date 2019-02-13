@@ -1,0 +1,17 @@
+﻿<div class="container">
+    <div class="container-fluid">
+        <p><center>
+               
+
+               <img src="~/calculadora-dni.png" /> </center></p>
+        @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+        {
+            <center>
+                
+               <input type="text" class="form-control input-lg" name="dni" placeholder="Ingresa tu DNI" /><input type="submit" class="btn btn-default" value="Verificar" />
+                <div class="arlert alert-info"> Por cuestiones de seguridad debes verificar tu dni antes de ingresar</div>
+                <div class="arlert alert-danger"> @ViewBag.errorDni</div>
+            </center>
+        }
+    </div>
+</div>

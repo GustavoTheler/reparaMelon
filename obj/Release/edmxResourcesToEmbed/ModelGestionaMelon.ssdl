@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="gestionaMelonBDDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="estado">
+    <Key>
+      <PropertyRef Name="id_estado" />
+    </Key>
+    <Property Name="id_estado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="estadoGarantia">
+    <Key>
+      <PropertyRef Name="id_estado_garantia" />
+    </Key>
+    <Property Name="id_estado_garantia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="garantia">
+    <Key>
+      <PropertyRef Name="idGarantia" />
+    </Key>
+    <Property Name="idGarantia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idVista" Type="int" />
+    <Property Name="estadoGarantia" Type="int" />
+    <Property Name="problema" Type="int" />
+    <Property Name="comentarios" Type="varchar" MaxLength="150" />
+    <Property Name="fechaIngreso" Type="date" />
+    <Property Name="ticket" Type="varchar" MaxLength="50" />
+    <Property Name="flagRetirada" Type="bit" />
+    <Property Name="fechaRetirada" Type="date" />
+    <Property Name="flagVuelta" Type="bit" />
+    <Property Name="fechaVuelta" Type="date" />
+  </EntityType>
+  <EntityType Name="problema">
+    <Key>
+      <PropertyRef Name="id_problema" />
+    </Key>
+    <Property Name="id_problema" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="vista">
+    <Key>
+      <PropertyRef Name="idVista" />
+    </Key>
+    <Property Name="idVista" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ndeserie" Type="varchar" MaxLength="15" />
+    <Property Name="alumno" Type="varchar" MaxLength="50" />
+    <Property Name="fk_estado" Type="int" />
+    <Property Name="comentarios" Type="varchar" MaxLength="150" />
+    <Property Name="fechaIngreso" Type="date" />
+    <Property Name="flagRetirada" Type="bit" />
+    <Property Name="fechaRetirada" Type="date" />
+  </EntityType>
+  <Association Name="fk">
+    <End Role="estado" Type="Self.estado" Multiplicity="0..1" />
+    <End Role="vista" Type="Self.vista" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="estado">
+        <PropertyRef Name="id_estado" />
+      </Principal>
+      <Dependent Role="vista">
+        <PropertyRef Name="fk_estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk1">
+    <End Role="vista" Type="Self.vista" Multiplicity="0..1" />
+    <End Role="garantia" Type="Self.garantia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="vista">
+        <PropertyRef Name="idVista" />
+      </Principal>
+      <Dependent Role="garantia">
+        <PropertyRef Name="idVista" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk2">
+    <End Role="estadoGarantia" Type="Self.estadoGarantia" Multiplicity="0..1" />
+    <End Role="garantia" Type="Self.garantia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="estadoGarantia">
+        <PropertyRef Name="id_estado_garantia" />
+      </Principal>
+      <Dependent Role="garantia">
+        <PropertyRef Name="estadoGarantia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk3">
+    <End Role="problema" Type="Self.problema" Multiplicity="0..1" />
+    <End Role="garantia" Type="Self.garantia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="problema">
+        <PropertyRef Name="id_problema" />
+      </Principal>
+      <Dependent Role="garantia">
+        <PropertyRef Name="problema" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="gestionaMelonBDDModelStoreContainer">
+    <EntitySet Name="estado" EntityType="Self.estado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="estadoGarantia" EntityType="Self.estadoGarantia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="garantia" EntityType="Self.garantia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="problema" EntityType="Self.problema" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vista" EntityType="Self.vista" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk" Association="Self.fk">
+      <End Role="estado" EntitySet="estado" />
+      <End Role="vista" EntitySet="vista" />
+    </AssociationSet>
+    <AssociationSet Name="fk1" Association="Self.fk1">
+      <End Role="vista" EntitySet="vista" />
+      <End Role="garantia" EntitySet="garantia" />
+    </AssociationSet>
+    <AssociationSet Name="fk2" Association="Self.fk2">
+      <End Role="estadoGarantia" EntitySet="estadoGarantia" />
+      <End Role="garantia" EntitySet="garantia" />
+    </AssociationSet>
+    <AssociationSet Name="fk3" Association="Self.fk3">
+      <End Role="problema" EntitySet="problema" />
+      <End Role="garantia" EntitySet="garantia" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

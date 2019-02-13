@@ -1,0 +1,61 @@
+﻿@model gestionaMelon.vista
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title" id="myModalLabel">Detalles</h4>
+    </div> 
+
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.alumno1.netbook.ndeserie)</dt>
+
+        <dd> @Html.DisplayFor(model => model.alumno1.netbook.ndeserie)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.alumno1.nombre)</dt>
+
+        <dd>@Html.DisplayFor(model => model.alumno1.nombre)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.alumno1.apellido)</dt>
+
+        <dd>@Html.DisplayFor(model => model.alumno1.apellido)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.alumno1.dni)</dt>
+
+        <dd>@Html.DisplayFor(model => model.alumno1.dni)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.comentarios)</dt>
+
+        <dd>@Html.DisplayFor(model => model.comentarios)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.fechaIngreso)</dt>
+
+        <dd>@Html.DisplayFor(model => model.fechaIngreso)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.flagRetirada)</dt>
+
+        <dd> @if (Model.flagRetirada.GetValueOrDefault())
+            {<text>Si</text>}
+            else
+            {<text>No</text>}
+        </dd>
+
+        <dt>@Html.DisplayNameFor(model => model.fechaRetirada)</dt>
+
+        <dd>@Html.DisplayFor(model => model.fechaRetirada)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.estado.descripcion)</dt>
+
+        <dd>@Html.DisplayFor(model => model.estado.descripcion)</dd>
+
+    </dl>
+</div>
+@*<p>
+    @Html.ActionLink("Back to previous page", null, null, null, new { href = Request.UrlReferrer })
+    
+</p>*@
+<hr />

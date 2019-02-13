@@ -1,0 +1,104 @@
+﻿@model gestionaMelon.garantia
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>garantia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.comentarios)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comentarios)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaIngreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaIngreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ticket)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ticket)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.flagRetirada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.flagRetirada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaRetirada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaRetirada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.flagVuelta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.flagVuelta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaVuelta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaVuelta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estadoGarantia1.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estadoGarantia1.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vista.ndeserie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vista.ndeserie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.problema1.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.problema1.descripcion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

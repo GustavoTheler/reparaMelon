@@ -1,0 +1,102 @@
+﻿@model IEnumerable<gestionaMelon.vista>
+
+<h2>Ingresos en reparación</h2>
+@*<h3>@ViewBag.alumno</h3>@Html.ActionLink("Reclamar", "Create", "vista_usuario_reclamo", new { id_vista = @ViewBag.ultimoIdVista }, null)*@
+
+<a href="@Url.Action("Create", "vista_usuario_reclamo", new { id_vista = @ViewBag.ultimoIdVista }, null)">
+    <button class="btn btn-danger">Reclamar</button>
+</a>
+
+<button class="btn btn-default" onclick="location.href='@Url.Action("Index", "vista_usuario_reclamo", new { id = @ViewBag.ultimoIdVista}, null)';return false;">Ver reclamos hechos</button>
+
+@*@Html.ActionLink("Ver reclamos hechos", "Index", "vista_usuario_reclamo" ,new { id = @ViewBag.ultimoIdVista }, null)*@
+
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.fechaIngreso)</th>
+        <th>@Html.DisplayNameFor(model => model.fechaRetirada)</th>
+        <th>@Html.DisplayNameFor(model => model.estado.descripcion)</th>
+        <th>@Html.DisplayNameFor(model => model.comentarios)</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.fechaIngreso)</td>
+            <td>@Html.DisplayFor(modelItem => item.fechaRetirada)</td>
+            <td>@Html.DisplayFor(modelItem => item.estado.descripcion)</td>
+            <td>@Html.DisplayFor(modelItem => item.comentarios)</td>
+            <td>
+                <a href="javascript:void(0);" class="anchorDetail" data-id="@item.idVista" data-url="/vista/Details">Detalles</a>
+            @*<td>@Html.ActionLink("Reclamar", "Create", "vista_usuario_reclamo", new { id_vista = item.idVista}, null)</td>*@
+            <td>
+                @{if (item.fk_estado == 2)
+                {
+                    @*@Html.ActionLink("Ver garantia", "verGarantia", new { id = item.idVista })*@
+                    <a href="javascript:void(0);" class="anchorDetail" data-id="@item.idVista" data-url="/vista/verGarantia"> Ver Garantia </a>
+                }
+
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<div id='myModal' class='modal'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+
+</div>
+
+@section scripts
+    {
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+
+        // var TeamDetailPostBackURL = '/vista/Details';
+
+
+
+        $(function () {
+            $(".anchorDetail").click(function () {
+                debugger;
+
+                var $buttonClicked = $(this);
+                var id = $buttonClicked.attr('data-id');
+                var TeamDetailPostBackURL = $buttonClicked.attr('data-url');
+                var options = { "backdrop": "static", keyboard: true };
+                $.ajax({
+                    type: "GET",
+                    url: TeamDetailPostBackURL,
+                    contentType: "application/json; charset=utf-8",
+                    data: { "Id": id },
+                    datatype: "json",
+                    success: function (data) {
+                        debugger;
+                        $('#myModalContent').html(data);
+                        $('#myModal').modal(options);
+                        $('#myModal').modal('show');
+
+                    },
+                    error: function () {
+                        alert("Dynamic content load failed.");
+                    }
+                });
+            });
+            //$("#closebtn").on('click',function(){
+            //    $('#myModal').modal('hide');
+
+            $("#closbtn").click(function () {
+                $('#myModal').modal('hide');
+            });
+        });
+
+    </script>
+}

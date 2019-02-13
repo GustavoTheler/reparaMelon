@@ -1,0 +1,74 @@
+﻿@model gestionaMelon.vista
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>vista</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ndeserie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ndeserie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.alumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.alumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.comentarios)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comentarios)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaIngreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaIngreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.flagRetirada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.flagRetirada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaRetirada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaRetirada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estado.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado.descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idVista }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

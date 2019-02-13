@@ -1,0 +1,26 @@
+﻿@using (Html.BeginForm())
+{
+    <table class="table">
+        <tr class="alert alert-info">
+            <th><input id="fechaDesde" class="form-control" name="fechaDesde" type="date" value="@(ViewBag.fechaDesde.ToString("yyyy-MM-dd"))" /></th>
+            <th><input id="fechaHasta" class="form-control" name="fechaHasta" type="date" value="@(ViewBag.fechaHasta.ToString("yyyy-MM-dd"))" /></th>
+            <th><input type="submit" value="Buscar" formmethod="get" class="form-control btn btn-primary btn-block" /></th>
+        </tr>
+    </table>  
+}
+
+
+<div>
+ <div class="col-md-6 text-center">
+     <img src="@Url.Action("reportePrueba", "Reportes", new { fechaDesde = ViewBag.fechaDesde, fechaHasta = ViewBag.fechaHasta })" alt="Chart" />
+     <br />
+     <p>Ingresos totales a reparacion: <strong>@ViewBag.ingresosTotales</strong></p>
+     <p>Tiempo promedio de reparación: <strong>@ViewBag.tiempoPromedioReparacion días </strong></p>
+ </div>
+    <div class="col-md-6 text-center">
+        <img src="@Url.Action("reportePorEstados", new { fechaDesde = ViewBag.fechaDesde, fechaHasta = ViewBag.fechaHasta })" alt="Chart" />
+        <br />
+        @Html.Raw(Server.HtmlEncode(@ViewBag.porEstados).Replace("\n", "<br/>").Replace("\a", "<strong>").Replace("/a", "</strong>"))
+    </div>
+    
+</div>    

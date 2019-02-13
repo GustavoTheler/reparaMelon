@@ -1,0 +1,11 @@
+﻿    <div class="alert-danger">
+        <div class=" col-md-offset-3 col-md-4">
+            <h2>Occurrio un error:</h2>
+            <p>@ViewBag.error</p>
+        </div>
+    </div>
+<div class="col-md-5"><img width="100" height="100" src="~/icon-error.png" /></div>
+<hr />
+<div class="col-md-9">@Html.ActionLink("Volver", null, null, null, new { href = Request.UrlReferrer })</div>
+
+    

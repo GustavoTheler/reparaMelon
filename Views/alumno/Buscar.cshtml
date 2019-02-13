@@ -1,0 +1,73 @@
+﻿@*@model IEnumerable<gestionaMelon.alumno>*@
+@model PagedList.IPagedList<gestionaMelon.alumno>    
+
+@using gestionaMelon.Helpers
+@using PagedList.Mvc;
+@using PagedList;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<div class="modal-header">
+   
+</div>   
+
+  @*@using (Html.BeginForm("Buscar", "Alumno", FormMethod.Get))
+    {
+        <center>
+            <p><input type="text" class="form-control input-lg" name="busqueda" placeholder="Ingresa nombre alumno" /></p>
+            <p><input type="submit" class="btn btn-default" value="Buscar" /></p>
+        </center>
+    }*@
+<div>
+   
+</div>
+   <table class="table">
+    <tr>
+        <th>  @Html.DisplayNameFor(model => model[0].nombre) </th>
+        <th>  @Html.DisplayNameFor(model => model[0].apellido) </th>
+        <th>  @Html.DisplayNameFor(model => model[0].dni) </th>
+        <th>  @Html.DisplayNameFor(model => model[0].CursosT.cursos_descripcion) </th>
+        <th>  @Html.DisplayNameFor(model => model[0].netbook.ndeserie) </th>
+    </tr>
+   
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td> @Html.DisplayFor(modelItem => item.nombre) </td>
+            <td> @Html.DisplayFor(modelItem => item.apellido) </td>
+            <td> @Html.DisplayFor(modelItem => item.dni) </td>
+            <td> @Html.DisplayFor(modelItem => item.CursosT.cursos_descripcion) </td>
+            <td> @Html.DisplayFor(modelItem => item.netbook.ndeserie) </td>
+
+            <td>
+                <button type="button" class="btn btn-primary btn-block" id="btnSubmit" value="<-" onclick="javascript:cambiar('@item.netbook.ndeserie','@item.dni', '@item.id_alumno', '@item.nombre', '@item.apellido')"><span class="glyphicon glyphicon-arrow-left"></span></button>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div id="myPager">
+    @Html.PagedListPager(Model,page => Url.Action("Buscar", new {page = page,busqueda = ViewBag.busqueda}))
+</div>
+
+@* SCRIPT PARA LA PAGINACION *@
+<script> 
+    $('#myPager').on('click', 'a', function (e) {
+        //prevent action link normal functionality
+        e.preventDefault();
+        $.ajax({
+            url: this.href,
+            type: 'GET',
+            cache: false,
+            success: function (result) {
+                $('#Result').html(result);
+            }
+        });
+        return false;
+    });
+</script>
+
+    @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("#", new { page }))*@

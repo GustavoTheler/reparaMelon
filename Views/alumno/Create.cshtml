@@ -1,0 +1,105 @@
+﻿    @model gestionaMelon.alumno
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>alumno</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.nombre, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.nombre, new {  @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.nombre)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.apellido, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.apellido, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.apellido)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.telefono, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.telefono, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.telefono)
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.mail, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.mail, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.mail)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dni, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.dni, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.dni)
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.fk_id_curso,  new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.DropDownList("fk_id_curso", String.Empty)*@
+                @Html.DropDownListFor(x => x.fk_id_curso, (IEnumerable<SelectListItem>)ViewBag.fk_id_curso, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.fk_id_curso)
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.fk_id_netbook, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("fk_id_netbook", null, new { @class = "ddlistSearch col-md-6" })
+                  @*  @Html.DropDownListFor(x => x.fk_id_netbook, (IEnumerable<SelectListItem>)ViewBag.fk_id_netbook, new { @class = "form-control" })*@
+                    @Html.ValidationMessageFor(model => model.fk_id_netbook)
+                </div>            
+        </div>
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+<script>
+    $(function () {
+        $("#fk_id_netbook").val(2);
+        $(".ddlistSearch").chosen();
+        
+    });
+    
+    </script>
+
+}

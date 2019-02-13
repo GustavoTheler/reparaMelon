@@ -1,0 +1,22 @@
+﻿@*@{
+    var myChart = new Chart(width: 600, height: 400)
+        .AddTitle("Chart Title")
+        .AddSeries(
+            name: "Employee",
+            xValue: new[] { "Peter", "Andrew", "Julie", "Mary", "Dave" },
+            yValues: new[] { "2", "6", "4", "5", "3" })
+        .Write();
+}*@
+
+@*@{
+    gestionaMelonBDDEntities db = new gestionaMelonBDDEntities();
+    
+    //db = System.Data.Entity("gestionaMelonBDD");
+    var data = db.alumno.SqlQuery("select * from alumno");
+    var myChart = new Chart(width: 800, height: 600)
+        .AddTitle("Vista")
+        .DataBindTable(dataSource: data, xField: "fecha")
+        .Write();
+}*@
+
+

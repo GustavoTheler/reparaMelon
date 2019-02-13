@@ -1,0 +1,161 @@
+﻿@model PagedList.IPagedList<gestionaMelon.garantia>
+
+
+@using gestionaMelon.Helpers
+@using PagedList.Mvc;
+@using PagedList;
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h4>Garantias</h4>
+
+@*<div style="position: fixed; bottom: 20px; right: 20px;">*@
+    <!--Boton fijo redondo y + para crear nuevo-->
+
+  @*  <a href="@Url.Action("Create")" class="btn btn-circle btn-primary"><span class="glyphicon glyphicon-plus"></span></a>*@
+@*</div>*@
+
+@using (Html.BeginForm())
+{
+    <p>
+        <table class="table">
+            <tr class="alert alert-info">
+                <th>@Html.TextBox("busquedaString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Buscar alumno" })</th>
+                <th>@Html.DropDownList("DDlRetirada", null, "¿Retirada?", htmlAttributes: new { @class = "form-control" })</th>
+                <th>@Html.DropDownList("DDlVuelta", null, "¿Volvió?", htmlAttributes: new { @class = "form-control" })</th>
+                <th>@Html.DropDownList("DDlEstadoGarantia", null, "Estado Garantia", htmlAttributes: new { @class = "form-control" })</th>
+                <th>@Html.DropDownList("DDlProblema", null, "Problema", htmlAttributes: new { @class = "form-control" })</th>
+                <th><a href="/garantia" title="Restaurar valores" class="btn btn-circle-sm btn-default"><span class="glyphicon glyphicon-refresh"></span></a></th> <!-- restaura valores de busqueda-->
+                <th><input type="submit" value="Buscar" formmethod="get" class="form-control btn btn-primary btn-block" /> </th>
+            </tr>
+        </table>
+        
+    </p>
+}
+<table class="table table-hover">
+    <tr>
+        @*<th> @Html.DisplayNameFor(model => model.comentarios) </th>*@
+        <th>
+            @*@Html.DisplayNameFor(model => model.fechaIngreso)*@
+        @Html.ActionLink("Fecha Ingreso", "Index", new { Sorting_Order = ViewBag.SortingDate, busquedaString = ViewBag.busquedaString, DDlRetirada = ViewBag.retiradaBool, DDlVuelta = ViewBag.vueltaBool, EstadoGarantia = ViewBag.estadoGarantiaInt, DDlProblema = ViewBag.problemaInt })
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model[0].vista.alumno1.nombre)
+        @*@Html.ActionLink("Nombre", "Index", new { Sorting_Order = ViewBag.SortingName, busquedaString = ViewBag.busquedaString, DDlRetirada = ViewBag.retiradaBool, DDlVuelta = ViewBag.vueltaBool, EstadoGarantia = ViewBag.estadoGarantiaInt, DDlProblema = ViewBag.problemaInt })*@
+    </th>
+    <th>
+        @*@Html.DisplayNameFor(model => model.vista.alumno1.apellido)*@ 
+        @Html.ActionLink("Apellido", "Index", new { Sorting_Order = ViewBag.SortingName, busquedaString = ViewBag.busquedaString, DDlRetirada = ViewBag.retiradaBool, DDlVuelta = ViewBag.vueltaBool, EstadoGarantia = ViewBag.estadoGarantiaInt, DDlProblema = ViewBag.problemaInt })
+    </th>
+    <th>@Html.DisplayNameFor(model => model[0].ticket) </th>
+    <th>@Html.DisplayNameFor(model => model[0].flagRetirada) </th>
+    @*<th> @Html.DisplayNameFor(model => model.fechaRetirada)</th>*@
+    <th>@Html.DisplayNameFor(model => model[0].flagVuelta)</th>
+    @*<th>@Html.DisplayNameFor(model => model.fechaVuelta)</th>*@
+    <th>@Html.DisplayNameFor(model => model[0].estadoGarantia1.descripcion) </th>
+    <th>@Html.DisplayNameFor(model => model[0].vista.ndeserie)  </th>
+    <th>@Html.DisplayNameFor(model => model[0].problema1.descripcion) </th>
+    <th></th>
+</tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        @*<td>  @Html.DisplayFor(modelItem => item.comentarios)  </td>*@
+        <td>@Html.DisplayFor(modelItem => item.fechaIngreso) </td>
+        <td>@Html.DisplayFor(modelItem => item.vista.alumno1.nombre)</td>
+        <td>@Html.DisplayFor(modelItem => item.vista.alumno1.apellido)</td>
+        <td>@Html.DisplayFor(modelItem => item.ticket) </td>
+        <td>
+            @{var SiNo = (item.flagRetirada.GetValueOrDefault() ? "Si" : "No");}
+        @Html.DisplayFor(modelItem => SiNo)
+    </td>
+    @*<td>  @Html.DisplayFor(modelItem => item.fechaRetirada) </td>*@
+    <td>
+        @{SiNo = (item.flagVuelta.GetValueOrDefault() ? "Si" : "No");}
+        @Html.DisplayFor(modelItem => SiNo)
+    </td>
+    @*<td>
+            @Html.DisplayFor(modelItem => item.fechaVuelta)
+        </td>*@
+    <td>@Html.DisplayFor(modelItem => item.estadoGarantia1.descripcion) </td>
+    <td>@Html.DisplayFor(modelItem => item.vista.alumno1.netbook.ndeserie) </td>
+    <td>@Html.DisplayFor(modelItem => item.problema1.descripcion) </td>
+
+    <td>
+        <a href="@Url.Action("Edit", new { id = item.idGarantia})" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
+        <a href="javascript:void(0);" class="anchorDetail" data-id="@item.idGarantia" data-url="/garantia/Details" title="Ver detalles"><span class=" glyphicon glyphicon-zoom-in "></span></a>
+        <a href="javascript:void(0);" class="anchorDetail" data-id="@item.idGarantia" data-url="/garantia/Delete" title="Eliminar"><span class="glyphicon glyphicon-trash"></span></a>
+        <a href="@Url.Action("Retirada", new { id = item.idGarantia })" title="Marcar como retirada por el correo"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a href="@Url.Action("Vuelta", new { id = item.idGarantia })" title="Marcar como que volvió al establecimiento"><span class="glyphicon glyphicon-arrow-down"></span></a>
+       
+    </td>
+</tr>
+}
+
+</table>
+
+ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, Sorting_Order = ViewBag.SortingName, busquedaString = ViewBag.busquedaString, DDlRetirada = ViewBag.retiradaBool, DDlVuelta = ViewBag.vueltaBool, EstadoGarantia = ViewBag.estadoGarantiaInt, DDlProblema = ViewBag.problemaInt }))
+
+<div id='myModal' class='modal'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+
+</div> 
+
+@section scripts
+    {
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+
+        // var TeamDetailPostBackURL = '/vista/Details';
+
+
+
+        $(function () {
+            $(".anchorDetail").click(function () {
+                debugger;
+
+                var $buttonClicked = $(this);
+                var id = $buttonClicked.attr('data-id');
+                var TeamDetailPostBackURL = $buttonClicked.attr('data-url');
+                var options = { "backdrop": "static", keyboard: true };
+                $.ajax({
+                    type: "GET",
+                    url: TeamDetailPostBackURL,
+                    contentType: "application/json; charset=utf-8",
+                    data: { "Id": id },
+                    datatype: "json",
+                    success: function (data) {
+                        debugger;
+                        $('#myModalContent').html(data);
+                        $('#myModal').modal(options);
+                        $('#myModal').modal('show');
+
+                    },
+                    error: function () {
+                        alert("Dynamic content load failed.");
+                    }
+                });
+            });
+            //$("#closebtn").on('click',function(){
+            //    $('#myModal').modal('hide');
+
+            $("#closbtn").click(function () {
+                $('#myModal').modal('hide');
+            });
+        });
+
+    </script>
+}

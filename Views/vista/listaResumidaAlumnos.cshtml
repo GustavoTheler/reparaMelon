@@ -1,0 +1,43 @@
+﻿@*@model IEnumerable<gestionaMelon.alumno>*@
+@model PagedList.IPagedList<gestionaMelon.alumno>
+
+@using gestionaMelon.Helpers
+@using PagedList.Mvc;
+@using PagedList;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<div class="col-md-6 col-md-offset-3">
+    <h4><strong>Alumnos encontrados</strong> con algún ingreso a reparación</h4>
+    
+    <table class="table">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model[0].netbook.ndeserie)</th>
+            <th>@Html.DisplayNameFor(model => model[0].nombre)</th>
+            <th>@Html.DisplayNameFor(model => model[0].apellido)</th>  
+            <th>@Html.DisplayNameFor(model => model[0].dni)</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.netbook.ndeserie)</td>
+                <td>@Html.DisplayFor(modelItem => item.nombre)</td>
+                <td>@Html.DisplayFor(modelItem => item.apellido)</td>
+                <td>@Html.DisplayFor(modelItem => item.dni)</td>
+                
+                <td>@Html.ActionLink("Elegir", "listaResumida", new { id = item.id_alumno })</td>
+                
+            </tr>
+        }
+
+    </table>
+
+    
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("listaResumidaAlumnos", new { page, busqueda = ViewBag.busqueda }))
+
+    
+</div>
+<div class="alert alert-info col-md-offset-1 col-md-10 text-center">Si no encuentra el alumno en la lista, no tiene ningun registro en los ingreso a reparación</div>

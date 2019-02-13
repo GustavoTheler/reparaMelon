@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="gestionaMelonBDDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="estado">
+    <Key>
+      <PropertyRef Name="id_estado" />
+    </Key>
+    <Property Name="id_estado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="vista" Relationship="Self.fk" FromRole="estado" ToRole="vista" />
+  </EntityType>
+  <EntityType Name="estadoGarantia">
+    <Key>
+      <PropertyRef Name="id_estado_garantia" />
+    </Key>
+    <Property Name="id_estado_garantia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="garantia" Relationship="Self.fk2" FromRole="estadoGarantia" ToRole="garantia" />
+  </EntityType>
+  <EntityType Name="garantia">
+    <Key>
+      <PropertyRef Name="idGarantia" />
+    </Key>
+    <Property Name="idGarantia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idVista" Type="Int32" />
+    <Property Name="estadoGarantia" Type="Int32" />
+    <Property Name="problema" Type="Int32" />
+    <Property Name="comentarios" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="fechaIngreso" Type="DateTime" Precision="0" />
+    <Property Name="ticket" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="flagRetirada" Type="Boolean" />
+    <Property Name="fechaRetirada" Type="DateTime" Precision="0" />
+    <Property Name="flagVuelta" Type="Boolean" />
+    <Property Name="fechaVuelta" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="estadoGarantia1" Relationship="Self.fk2" FromRole="garantia" ToRole="estadoGarantia" />
+    <NavigationProperty Name="vista" Relationship="Self.fk1" FromRole="garantia" ToRole="vista" />
+    <NavigationProperty Name="problema1" Relationship="Self.fk3" FromRole="garantia" ToRole="problema" />
+  </EntityType>
+  <EntityType Name="problema">
+    <Key>
+      <PropertyRef Name="id_problema" />
+    </Key>
+    <Property Name="id_problema" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="garantia" Relationship="Self.fk3" FromRole="problema" ToRole="garantia" />
+  </EntityType>
+  <EntityType Name="vista">
+    <Key>
+      <PropertyRef Name="idVista" />
+    </Key>
+    <Property Name="idVista" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ndeserie" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="alumno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fk_estado" Type="Int32" />
+    <Property Name="comentarios" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="fechaIngreso" Type="DateTime" Precision="0" />
+    <Property Name="flagRetirada" Type="Boolean" />
+    <Property Name="fechaRetirada" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="estado" Relationship="Self.fk" FromRole="vista" ToRole="estado" />
+    <NavigationProperty Name="garantia" Relationship="Self.fk1" FromRole="vista" ToRole="garantia" />
+  </EntityType>
+  <Association Name="fk">
+    <End Role="estado" Type="Self.estado" Multiplicity="0..1" />
+    <End Role="vista" Type="Self.vista" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="estado">
+        <PropertyRef Name="id_estado" />
+      </Principal>
+      <Dependent Role="vista">
+        <PropertyRef Name="fk_estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk2">
+    <End Role="estadoGarantia" Type="Self.estadoGarantia" Multiplicity="0..1" />
+    <End Role="garantia" Type="Self.garantia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="estadoGarantia">
+        <PropertyRef Name="id_estado_garantia" />
+      </Principal>
+      <Dependent Role="garantia">
+        <PropertyRef Name="estadoGarantia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk1">
+    <End Role="vista" Type="Self.vista" Multiplicity="0..1" />
+    <End Role="garantia" Type="Self.garantia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="vista">
+        <PropertyRef Name="idVista" />
+      </Principal>
+      <Dependent Role="garantia">
+        <PropertyRef Name="idVista" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk3">
+    <End Role="problema" Type="Self.problema" Multiplicity="0..1" />
+    <End Role="garantia" Type="Self.garantia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="problema">
+        <PropertyRef Name="id_problema" />
+      </Principal>
+      <Dependent Role="garantia">
+        <PropertyRef Name="problema" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="gestionaMelonBDDEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="estado" EntityType="Self.estado" />
+    <EntitySet Name="estadoGarantia" EntityType="Self.estadoGarantia" />
+    <EntitySet Name="garantia" EntityType="Self.garantia" />
+    <EntitySet Name="problema" EntityType="Self.problema" />
+    <EntitySet Name="vista" EntityType="Self.vista" />
+    <AssociationSet Name="fk" Association="Self.fk">
+      <End Role="estado" EntitySet="estado" />
+      <End Role="vista" EntitySet="vista" />
+    </AssociationSet>
+    <AssociationSet Name="fk2" Association="Self.fk2">
+      <End Role="estadoGarantia" EntitySet="estadoGarantia" />
+      <End Role="garantia" EntitySet="garantia" />
+    </AssociationSet>
+    <AssociationSet Name="fk1" Association="Self.fk1">
+      <End Role="vista" EntitySet="vista" />
+      <End Role="garantia" EntitySet="garantia" />
+    </AssociationSet>
+    <AssociationSet Name="fk3" Association="Self.fk3">
+      <End Role="problema" EntitySet="problema" />
+      <End Role="garantia" EntitySet="garantia" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

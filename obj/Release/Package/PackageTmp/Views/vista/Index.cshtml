@@ -1,0 +1,100 @@
+﻿@model IEnumerable<gestionaMelon.vista>
+           
+@using gestionaMelon.Helpers
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        <table class="table">
+            <tr class="success">
+                <th>Buscar alumno: @Html.TextBox("busquedaString")</th>
+                <th>@Html.DropDownList("fk_estado", "Estados")</th>
+                <th>@Html.DropDownList("DDlRetirada")</th>
+                <th><input type="submit" value="Buscar" /> | @Html.ActionLink("Restaurar valores", "Index")</th>
+            </tr>
+        </table>
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ndeserie)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.alumno)*@
+            @Html.ActionLink("Alumno", "Index", new { Sorting_Order = ViewBag.SortingName })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.comentarios)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.fechaIngreso)*@
+            @Html.ActionLink("Fecha Ingreso", "Index", new { Sorting_Order = ViewBag.SortingDate })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.flagRetirada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaRetirada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado.descripcion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ndeserie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.alumno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.comentarios)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaIngreso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.flagRetirada)
+           
+            
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaRetirada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado.descripcion)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.idVista }) |
+            @Html.ActionLink("Details", "Details", new { id = item.idVista }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.idVista }) |
+            @Html.ActionLink("Retirada", "Retirada", new { id = item.idVista }) |
+         
+
+            @{
+    if (item.fk_estado == 2)
+    { 
+                    @Html.ActionLink("Ver garantia", "verGarantia", new { id = item.idVista })
+    }
+             }
+            
+    </tr>
+}
+
+</table>

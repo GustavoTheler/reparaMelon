@@ -1,0 +1,125 @@
+﻿@model IEnumerable<gestionaMelon.garantia>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        <table class="table">
+            @*<tr class="success">
+                <th>@Html.DisplayNameFor(model => model.vista.alumno)</th>
+                <th>@Html.DisplayNameFor(model => model.flagRetirada )</th>
+                <th>@Html.DisplayNameFor(model => model.flagVuelta)</th>
+                <th>@Html.DisplayNameFor(model => model.estadoGarantia)</th>
+                <th>@Html.DisplayNameFor(model => model.problema)</th>
+                <th> </th>
+            </tr>*@
+            <tr class="success">
+                <th> Buscar alumno: @Html.TextBox("busquedaString")</th>
+                <th>@Html.DropDownList("DDlRetirada", "¿Retirada?")</th>
+                <th>@Html.DropDownList("DDlVuelta", "¿Volvió?")</th>
+                <th>@Html.DropDownList("DDlEstadoGarantia", "Estado Garantia")</th>
+                <th>@Html.DropDownList("DDlProblema", "Problema")</th>
+                <th><input type="submit" value="Buscar" /> | @Html.ActionLink("Restaurar valores", "Index")</th>
+            </tr>
+        </table>
+        
+    </p>
+}
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.comentarios)
+        </th>*@
+        <th>
+            @*@Html.DisplayNameFor(model => model.fechaIngreso)*@
+            @Html.ActionLink("Fecha Ingreso", "Index", new { Sorting_Order = ViewBag.SortingDate })
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.vista.alumno)*@
+            @Html.ActionLink("Alumno", "Index", new { Sorting_Order = ViewBag.SortingName })
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ticket)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.flagRetirada)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.fechaRetirada)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.flagVuelta)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.fechaVuelta)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.estadoGarantia1.descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vista.ndeserie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.problema1.descripcion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.comentarios)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaIngreso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vista.alumno)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.ticket)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.flagRetirada)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.fechaRetirada)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.flagVuelta)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.fechaVuelta)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.estadoGarantia1.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vista.ndeserie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.problema1.descripcion)
+           
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idGarantia }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idGarantia }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idGarantia }) |
+            @Html.ActionLink("Retirada", "Retirada", new { id = item.idGarantia }) |
+            @Html.ActionLink("Volvio", "Vuelta", new { id = item.idGarantia })
+        </td>
+    </tr>
+}
+
+</table>

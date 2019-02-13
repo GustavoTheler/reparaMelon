@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="gestionaMelonBDDModelStoreContainer" CdmEntityContainer="gestionaMelonBDDEntities">
+    <EntitySetMapping Name="estado">
+      <EntityTypeMapping TypeName="gestionaMelonBDDModel.estado">
+        <MappingFragment StoreEntitySet="estado">
+          <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="estadoGarantia">
+      <EntityTypeMapping TypeName="gestionaMelonBDDModel.estadoGarantia">
+        <MappingFragment StoreEntitySet="estadoGarantia">
+          <ScalarProperty Name="id_estado_garantia" ColumnName="id_estado_garantia" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="garantia">
+      <EntityTypeMapping TypeName="gestionaMelonBDDModel.garantia">
+        <MappingFragment StoreEntitySet="garantia">
+          <ScalarProperty Name="idGarantia" ColumnName="idGarantia" />
+          <ScalarProperty Name="idVista" ColumnName="idVista" />
+          <ScalarProperty Name="estadoGarantia" ColumnName="estadoGarantia" />
+          <ScalarProperty Name="problema" ColumnName="problema" />
+          <ScalarProperty Name="comentarios" ColumnName="comentarios" />
+          <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+          <ScalarProperty Name="ticket" ColumnName="ticket" />
+          <ScalarProperty Name="flagRetirada" ColumnName="flagRetirada" />
+          <ScalarProperty Name="fechaRetirada" ColumnName="fechaRetirada" />
+          <ScalarProperty Name="flagVuelta" ColumnName="flagVuelta" />
+          <ScalarProperty Name="fechaVuelta" ColumnName="fechaVuelta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="problema">
+      <EntityTypeMapping TypeName="gestionaMelonBDDModel.problema">
+        <MappingFragment StoreEntitySet="problema">
+          <ScalarProperty Name="id_problema" ColumnName="id_problema" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vista">
+      <EntityTypeMapping TypeName="gestionaMelonBDDModel.vista">
+        <MappingFragment StoreEntitySet="vista">
+          <ScalarProperty Name="idVista" ColumnName="idVista" />
+          <ScalarProperty Name="ndeserie" ColumnName="ndeserie" />
+          <ScalarProperty Name="alumno" ColumnName="alumno" />
+          <ScalarProperty Name="fk_estado" ColumnName="fk_estado" />
+          <ScalarProperty Name="comentarios" ColumnName="comentarios" />
+          <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+          <ScalarProperty Name="flagRetirada" ColumnName="flagRetirada" />
+          <ScalarProperty Name="fechaRetirada" ColumnName="fechaRetirada" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

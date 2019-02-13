@@ -1,0 +1,241 @@
+﻿@model gestionaMelon.garantia
+
+@{
+    ViewBag.Title = "Garantia";
+}
+
+<h2>Garantía</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Datos del equipo en garantía</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.idGarantia)
+
+        <div class="elegirAlumno" style="display:none">
+
+            @* NO SE MYUESTRA EL DDLSIT CON LOS N DE NETBOOKS ES DECIR IDVISTA *@
+            <div class="form-group">
+                @Html.LabelFor(model => model.idVista, "idVista", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.HiddenFor(model => model.idVista, new { htmlAttributes = new { disabled = "disabled" } })
+
+                    @* @Html.DropDownList("idVista", String.Empty)*@
+                    @* @Html.ValidationMessageFor(model => model.idVista)*@
+                    @*@Html.DisplayFor(model => model.idVista)*@
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.vista.alumno1.nombre, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.vista.alumno1.nombre, new { disabled = "true" ,  @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.vista.alumno1.nombre)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.vista.alumno1.apellido, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.vista.alumno1.apellido, new { disabled = "true", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.vista.alumno1.apellido)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.vista.alumno1.dni, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.vista.alumno1.dni, new { disabled = "true", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.vista.alumno1.dni)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.vista.alumno1.netbook.ndeserie, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.vista.alumno1.netbook.ndeserie, new { disabled = "true", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.vista.alumno1.netbook.ndeserie)
+                </div>
+            </div>
+
+        </div> @*fin elegir alumno*@
+
+        <div class="infoAlumno">
+            <label class="control-label col-md-5" id="label_info"></label>
+        </div>
+        <br />
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.estadoGarantia, "estadoGarantia", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("estadoGarantia", null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.estadoGarantia)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.problema, "problema", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("problema", null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.problema)
+            </div>
+        </div>
+
+        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fechaIngreso, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.fechaIngreso)*@
+
+                @Html.TextBoxFor(model => model.fechaIngreso, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                @Html.ValidationMessageFor(model => model.fechaIngreso)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ticket, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ticket, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ticket)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.flagRetirada, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.flagRetirada)
+                @Html.ValidationMessageFor(model => model.flagRetirada)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fechaRetirada, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.fechaRetirada, "{0:yyyy-MM-dd}", new {type = "date", @class="form-control" })
+                @Html.ValidationMessageFor(model => model.fechaRetirada)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.flagVuelta, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.flagVuelta)
+                @Html.ValidationMessageFor(model => model.flagVuelta)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fechaVuelta, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.fechaVuelta, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                @Html.ValidationMessageFor(model => model.fechaVuelta)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.comentarios, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.comentarios, new { @class="form-control" })
+                @Html.ValidationMessageFor(model => model.comentarios)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Volver", null, null, null, new { href = Request.UrlReferrer })
+    <a href="javascript:void(0);" class="anchorDetail" data-id="@Model.idGarantia" data-url="/garantia/Delete">Eliminar |</a> 
+</div>
+
+
+
+<div id='myModal' class='modal'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+<script src="~/Scripts/jquery-1.12.4.js"></script>
+    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+
+        // var TeamDetailPostBackURL = '/vista/Details';
+
+        $(function () {
+            var ndeserie = $("#vista_alumno1_netbook_ndeserie").val();
+            var nombre = $("#vista_alumno1_nombre").val();
+            var apellido = $("#vista_alumno1_apellido").val();
+            var alumno = $("#vista_alumno1_dni").val();
+            
+            $("#label_info").text(nombre + " " + apellido + " (Dni:" + alumno + " - ndeserie:" + ndeserie + ")");
+
+            //cambiar ddlist retirada y volvio a False default en caso de que este sin establecer
+            var retirada = $("#flagRetirada").val();
+            var vuelta = $("#flagVuelta").val();
+
+            if (retirada == "") {
+                $("#flagRetirada").val("false");
+            }
+
+            if (vuelta == "") {
+                $("#flagVuelta").val("false");
+            }
+            
+        });
+
+        $(function () {
+            $(".anchorDetail").click(function () {
+                debugger;
+
+                var $buttonClicked = $(this);
+                var id = $buttonClicked.attr('data-id');
+                var TeamDetailPostBackURL = $buttonClicked.attr('data-url');
+                var options = { "backdrop": "static", keyboard: true };
+                $.ajax({
+                    type: "GET",
+                    url: TeamDetailPostBackURL,
+                    contentType: "application/json; charset=utf-8",
+                    data: { "Id": id },
+                    datatype: "json",
+                    success: function (data) {
+                        debugger;
+                        $('#myModalContent').html(data);
+                        $('#myModal').modal(options);
+                        $('#myModal').modal('show');
+
+                    },
+                    error: function () {
+                        alert("Dynamic content load failed.");
+                    }
+                });
+            });
+            //$("#closebtn").on('click',function(){
+            //    $('#myModal').modal('hide');
+
+            $("#closbtn").click(function () {
+                $('#myModal').modal('hide');
+            });
+        });
+
+    </script>
+}

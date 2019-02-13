@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="container">
+    <div class="container-fluid">
+        <p><center><img src="../../img/netbook.png" /></center></p>
+        @using (Html.BeginForm("listaResumidaAlumnos", "Vista", FormMethod.Get))
+        {
+            <center>
+                <input type="text" class="form-control input-lg" name="busqueda" placeholder="Ingresa algun dato del alumno" />
+                <p><input type="submit" class="btn btn-default" value="Buscar" /></p>
+            </center>   
+        }
+    </div>
+</div>
+    
+
+
+
+
+
+
+
+
+

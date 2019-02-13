@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title ReparaMelon</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Content/Chosen/chosen.min.css" rel="stylesheet" />
+
+    <link href="@Url.Content("~/Content/themes/base/jquery.ui.core.css")"
+          rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/jquery.ui.datepicker.css")"
+          rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/jquery.ui.theme.css")"
+          rel="stylesheet" type="text/css" />
+
+    <script src="@Url.Content("~/Scripts/jquery.ui.core.min.js")"
+            type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.ui.datepicker.min.js")"
+            type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/DatePickerReady.js")"
+            type="text/javascript"></script>
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("ReparaMelon", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (User.IsInRole("Admin")) // muestra el menu solo si es usuario Admin
+                    {
+                        //<li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Alumnos", "Index", "alumno")</li>
+                        <li>@Html.ActionLink("Vistas", "Index", "vista")</li>
+                        <li>@Html.ActionLink("Garantias", "Index", "garantia")</li>
+                        <li>@Html.ActionLink("Reclamos", "reclamoTodos", "vista_usuario_reclamo")</li>
+                       
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Otros <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                            <li>@Html.ActionLink("Estado", "Index", "estado")</li></li>
+                            <li>@Html.ActionLink("Estados garantias", "Index", "estadoGarantia")</li>
+                            <li>@Html.ActionLink("Problemas", "Index", "problema")</li>
+                            <li role="separator" class="divider"></li>
+                            <li>@Html.ActionLink("Cursos", "Index", "cursosT")</li>
+                            <li>@Html.ActionLink("Equipos", "Index", "netbook")</li>
+                            <li>@Html.ActionLink("Reportes", "Index", "Reportes")</li>
+                        </ul>
+                   </li>
+                   }
+                </ul>
+                        @if (User.IsInRole("Alumno") || User.IsInRole("Docente"))
+                {
+                            <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Mis Reclamos", "reclamoPorUsuario", "vista_usuario_reclamo")</li>
+                                </ul>
+        }
+
+
+
+
+
+                @Html.Partial("_LoginPartial")
+            </div>
+
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/chosen.jquery.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

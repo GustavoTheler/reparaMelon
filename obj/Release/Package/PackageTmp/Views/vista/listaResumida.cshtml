@@ -1,0 +1,50 @@
+﻿@model IEnumerable<gestionaMelon.vista>
+
+<h2>Vistas por el técnico</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ndeserie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.alumno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaIngreso)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.fechaRetirada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado.descripcion)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ndeserie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.alumno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaIngreso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaRetirada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estado.descripcion)
+            </td>
+            <td> 
+                @Html.ActionLink("Details", "Details", new { id = item.idVista }) 
+            </tr>
+    }
+
+</table>
+

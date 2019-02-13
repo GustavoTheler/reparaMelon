@@ -1,0 +1,450 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="gestionaMelonBDDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="alumno">
+    <Key>
+      <PropertyRef Name="id_alumno" />
+    </Key>
+    <Property Name="id_alumno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" />
+    <Property Name="apellido" Type="varchar" MaxLength="50" />
+    <Property Name="telefono" Type="varchar" MaxLength="50" />
+    <Property Name="mail" Type="varchar" MaxLength="50" />
+    <Property Name="fk_id_curso" Type="int" />
+    <Property Name="fk_id_netbook" Type="int" />
+    <Property Name="dni" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+    <Property Name="User_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar(max)" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="mail" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="CursosT">
+    <Key>
+      <PropertyRef Name="id_cursos" />
+    </Key>
+    <Property Name="id_cursos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cursos_descripcion" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="estado">
+    <Key>
+      <PropertyRef Name="id_estado" />
+    </Key>
+    <Property Name="id_estado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="estadoGarantia">
+    <Key>
+      <PropertyRef Name="id_estado_garantia" />
+    </Key>
+    <Property Name="id_estado_garantia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="garantia">
+    <Key>
+      <PropertyRef Name="idGarantia" />
+    </Key>
+    <Property Name="idGarantia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idVista" Type="int" />
+    <Property Name="estadoGarantia" Type="int" />
+    <Property Name="problema" Type="int" />
+    <Property Name="comentarios" Type="varchar" MaxLength="150" />
+    <Property Name="ticket" Type="varchar" MaxLength="50" />
+    <Property Name="flagRetirada" Type="bit" />
+    <Property Name="fechaRetirada" Type="date" />
+    <Property Name="flagVuelta" Type="bit" />
+    <Property Name="fechaVuelta" Type="date" />
+    <Property Name="fechaIngreso" Type="date" />
+    <Property Name="eliminado" Type="bit" />
+  </EntityType>
+  <EntityType Name="netbook">
+    <Key>
+      <PropertyRef Name="id_netbook" />
+    </Key>
+    <Property Name="id_netbook" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ndeserie" Type="varchar" MaxLength="20" />
+    <Property Name="marca" Type="varchar" MaxLength="50" />
+    <Property Name="modelo" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="problema">
+    <Key>
+      <PropertyRef Name="id_problema" />
+    </Key>
+    <Property Name="id_problema" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="propUser">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mail" Type="varchar" MaxLength="150" />
+    <Property Name="fk_id_user" Type="nvarchar" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="reclamo">
+    <Key>
+      <PropertyRef Name="id_reclamo" />
+    </Key>
+    <Property Name="id_reclamo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="vista">
+    <Key>
+      <PropertyRef Name="idVista" />
+    </Key>
+    <Property Name="idVista" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ndeserie" Type="varchar" MaxLength="15" />
+    <Property Name="alumno" Type="varchar" MaxLength="50" />
+    <Property Name="fk_estado" Type="int" />
+    <Property Name="comentarios" Type="varchar" MaxLength="150" />
+    <Property Name="fechaIngreso" Type="date" />
+    <Property Name="flagRetirada" Type="bit" />
+    <Property Name="fechaRetirada" Type="date" />
+    <Property Name="fk_id_alumno" Type="int" />
+    <Property Name="eliminado" Type="bit" />
+  </EntityType>
+  <EntityType Name="vista_usuario_reclamo">
+    <Key>
+      <PropertyRef Name="id_vista_usuario_reclamo" />
+    </Key>
+    <Property Name="id_vista_usuario_reclamo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_usuario" Type="nvarchar" MaxLength="128" />
+    <Property Name="id_reclamo" Type="int" />
+    <Property Name="id_vista" Type="int" />
+    <Property Name="visto" Type="bit" />
+    <Property Name="fecha" Type="datetime" />
+    <Property Name="id_usuario_destino" Type="nvarchar" MaxLength="128" />
+  </EntityType>
+  <Association Name="fk">
+    <End Role="estado" Type="Self.estado" Multiplicity="0..1" />
+    <End Role="vista" Type="Self.vista" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="estado">
+        <PropertyRef Name="id_estado" />
+      </Principal>
+      <Dependent Role="vista">
+        <PropertyRef Name="fk_estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__alumno__fk_id_cu__2B0A656D">
+    <End Role="CursosT" Type="Self.CursosT" Multiplicity="0..1" />
+    <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CursosT">
+        <PropertyRef Name="id_cursos" />
+      </Principal>
+      <Dependent Role="alumno">
+        <PropertyRef Name="fk_id_curso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__alumno__fk_id_ne__2BFE89A6">
+    <End Role="netbook" Type="Self.netbook" Multiplicity="0..1" />
+    <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="netbook">
+        <PropertyRef Name="id_netbook" />
+      </Principal>
+      <Dependent Role="alumno">
+        <PropertyRef Name="fk_id_netbook" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__propUser__fk_id___6CD828CA">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="propUser" Type="Self.propUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="propUser">
+        <PropertyRef Name="fk_id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__vista_usu__id_us__681373AD">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="vista_usuario_reclamo" Type="Self.vista_usuario_reclamo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="vista_usuario_reclamo">
+        <PropertyRef Name="id_usuario_destino" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_alumno_fk">
+    <End Role="alumno" Type="Self.alumno" Multiplicity="0..1" />
+    <End Role="vista" Type="Self.vista" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="alumno">
+        <PropertyRef Name="id_alumno" />
+      </Principal>
+      <Dependent Role="vista">
+        <PropertyRef Name="fk_id_alumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_id_reclamo">
+    <End Role="reclamo" Type="Self.reclamo" Multiplicity="0..1" />
+    <End Role="vista_usuario_reclamo" Type="Self.vista_usuario_reclamo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="reclamo">
+        <PropertyRef Name="id_reclamo" />
+      </Principal>
+      <Dependent Role="vista_usuario_reclamo">
+        <PropertyRef Name="id_reclamo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_id_usuario">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="vista_usuario_reclamo" Type="Self.vista_usuario_reclamo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="vista_usuario_reclamo">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_id_vista">
+    <End Role="vista" Type="Self.vista" Multiplicity="0..1" />
+    <End Role="vista_usuario_reclamo" Type="Self.vista_usuario_reclamo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="vista">
+        <PropertyRef Name="idVista" />
+      </Principal>
+      <Dependent Role="vista_usuario_reclamo">
+        <PropertyRef Name="id_vista" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk1">
+    <End Role="vista" Type="Self.vista" Multiplicity="0..1" />
+    <End Role="garantia" Type="Self.garantia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="vista">
+        <PropertyRef Name="idVista" />
+      </Principal>
+      <Dependent Role="garantia">
+        <PropertyRef Name="idVista" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk2">
+    <End Role="estadoGarantia" Type="Self.estadoGarantia" Multiplicity="0..1" />
+    <End Role="garantia" Type="Self.garantia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="estadoGarantia">
+        <PropertyRef Name="id_estado_garantia" />
+      </Principal>
+      <Dependent Role="garantia">
+        <PropertyRef Name="estadoGarantia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk3">
+    <End Role="problema" Type="Self.problema" Multiplicity="0..1" />
+    <End Role="garantia" Type="Self.garantia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="problema">
+        <PropertyRef Name="id_problema" />
+      </Principal>
+      <Dependent Role="garantia">
+        <PropertyRef Name="problema" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="gestionaMelonBDDModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="alumno" EntityType="Self.alumno" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CursosT" EntityType="Self.CursosT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="estado" EntityType="Self.estado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="estadoGarantia" EntityType="Self.estadoGarantia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="garantia" EntityType="Self.garantia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="netbook" EntityType="Self.netbook" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="problema" EntityType="Self.problema" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="propUser" EntityType="Self.propUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="reclamo" EntityType="Self.reclamo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vista" EntityType="Self.vista" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vista_usuario_reclamo" EntityType="Self.vista_usuario_reclamo" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk" Association="Self.fk">
+      <End Role="estado" EntitySet="estado" />
+      <End Role="vista" EntitySet="vista" />
+    </AssociationSet>
+    <AssociationSet Name="FK__alumno__fk_id_cu__2B0A656D" Association="Self.FK__alumno__fk_id_cu__2B0A656D">
+      <End Role="CursosT" EntitySet="CursosT" />
+      <End Role="alumno" EntitySet="alumno" />
+    </AssociationSet>
+    <AssociationSet Name="FK__alumno__fk_id_ne__2BFE89A6" Association="Self.FK__alumno__fk_id_ne__2BFE89A6">
+      <End Role="netbook" EntitySet="netbook" />
+      <End Role="alumno" EntitySet="alumno" />
+    </AssociationSet>
+    <AssociationSet Name="FK__propUser__fk_id___6CD828CA" Association="Self.FK__propUser__fk_id___6CD828CA">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="propUser" EntitySet="propUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK__vista_usu__id_us__681373AD" Association="Self.FK__vista_usu__id_us__681373AD">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="vista_usuario_reclamo" EntitySet="vista_usuario_reclamo" />
+    </AssociationSet>
+    <AssociationSet Name="fk_alumno_fk" Association="Self.fk_alumno_fk">
+      <End Role="alumno" EntitySet="alumno" />
+      <End Role="vista" EntitySet="vista" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="fk_id_reclamo" Association="Self.fk_id_reclamo">
+      <End Role="reclamo" EntitySet="reclamo" />
+      <End Role="vista_usuario_reclamo" EntitySet="vista_usuario_reclamo" />
+    </AssociationSet>
+    <AssociationSet Name="fk_id_usuario" Association="Self.fk_id_usuario">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="vista_usuario_reclamo" EntitySet="vista_usuario_reclamo" />
+    </AssociationSet>
+    <AssociationSet Name="fk_id_vista" Association="Self.fk_id_vista">
+      <End Role="vista" EntitySet="vista" />
+      <End Role="vista_usuario_reclamo" EntitySet="vista_usuario_reclamo" />
+    </AssociationSet>
+    <AssociationSet Name="fk1" Association="Self.fk1">
+      <End Role="vista" EntitySet="vista" />
+      <End Role="garantia" EntitySet="garantia" />
+    </AssociationSet>
+    <AssociationSet Name="fk2" Association="Self.fk2">
+      <End Role="estadoGarantia" EntitySet="estadoGarantia" />
+      <End Role="garantia" EntitySet="garantia" />
+    </AssociationSet>
+    <AssociationSet Name="fk3" Association="Self.fk3">
+      <End Role="problema" EntitySet="problema" />
+      <End Role="garantia" EntitySet="garantia" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

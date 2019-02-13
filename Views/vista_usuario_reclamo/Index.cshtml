@@ -1,0 +1,65 @@
+﻿@model IEnumerable<gestionaMelon.vista_usuario_reclamo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Reclamos</h2>
+
+<p>    <button class="btn btn-danger" onclick="location.href='@Url.Action("Create", new { id_vista = ViewData["idVista"] })';return false;">Reclamar</button>
+    <button class="btn btn-default" onclick="location.href='@Url.Action("reclamoPorusuario")';return false;">Ver todos mis reclamos</button>
+     <br />@Html.ActionLink("Volver", null, null, null, new { href = Request.UrlReferrer })
+</p>
+
+<table class="table table-striped">
+    <tr>
+        <th class="danger">N° de Serie</th>
+        <th class ="danger">Alumno</th>
+        <th class="danger">Estado</th>
+        @*<th class="">Comentarios</th>*@
+        <th class="danger">Fecha de ingreso</th>
+    </tr>
+    <tr>
+        <td>@ViewData["ndeserie"]</td>
+        <td>@ViewData["nombre"] @ViewData["apellido"]</td>
+        <td>@ViewData["estadoDescripcion"]</td>
+        @*<td>@ViewData["comentarios"]</td>*@
+        <td>@ViewData["fechaIngreso"].ToString()</td>
+    </tr>
+    
+</table> 
+
+<h4>Comentarios:</h4>
+@foreach (var item in Model)
+{
+
+
+    <div class="row col-md-offset-1 col-md-10"  style=" border: 1px solid #ccc; border-radius:15px">
+
+
+
+        <div class="col-md-11">
+            <span class="glyphicon glyphicon-user"></span><strong> @Html.DisplayFor(modelItem => item.AspNetUsers.UserName)</strong> comentó:
+        </div>
+        @if (User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("x", "Delete", new { id = item.id_vista_usuario_reclamo })
+        }
+
+        
+        <div style="font-style:italic"><p class="col-md-10">@Html.DisplayFor(modelItem => item.reclamo.descripcion)</p></div>
+        <small class="text-muted col-md-2"> @Html.DisplayFor(modelItem => item.fecha)</small>
+
+
+    </div>
+    <br />
+    
+     
+  
+    
+  
+}
+               
+
+
+
